@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Md Mumtahin Arefin — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"Share Tech Mono"', 'monospace'],
+            orb: ['"Orbitron"', 'sans-serif'],
+            raj: ['"Rajdhani"', 'sans-serif'],
+          },
+          colors: {
+            void: '#05050f',
+            abyss: '#080818',
+            panel: '#0d0d2b',
+            surface: '#11112e',
+            neon: '#7c3aed',
+            neonbright: '#a855f7',
+            glow: '#6d28d9',
+            electric: '#3b82f6',
+            cyan: '#06b6d4',
+            silver: '#94a3b8',
+            muted: '#475569',
+          },
+          animation: {
+            'flicker': 'flicker 3s infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'scan': 'scan 4s linear infinite',
+            'typewriter': 'typewriter 3s steps(30) forwards',
+            'blink': 'blink 1s step-end infinite',
+          },
+          keyframes: {
+            flicker: {
+              '0%, 100%': { opacity: '1' },
+              '92%': { opacity: '1' },
+              '93%': { opacity: '0.4' },
+              '94%': { opacity: '1' },
+              '96%': { opacity: '0.6' },
+              '97%': { opacity: '1' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            scan: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100vh)' },
+            },
+            blink: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0' },
+            }
+          },
+          boxShadow: {
+            'neon': '0 0 20px rgba(124, 58, 237, 0.6), 0 0 40px rgba(124, 58, 237, 0.3)',
+            'neon-sm': '0 0 10px rgba(124, 58, 237, 0.5)',
+            'electric': '0 0 20px rgba(59, 130, 246, 0.6)',
+            'inner-glow': 'inset 0 0 30px rgba(124, 58, 237, 0.1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #05050f; font-family: 'Rajdhani', sans-serif; }
+
+    /* Scanline overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* Glow text */
+    .text-glow {
+      text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(124,58,237,0.5);
+    }
+    .text-glow-blue {
+      text-shadow: 0 0 20px rgba(59,130,246,0.8), 0 0 40px rgba(59,130,246,0.4);
+    }
+
+    /* Gradient text */
+    .grad-text {
+      background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-text-alt {
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Neon border */
+    .border-neon {
+      border: 1px solid rgba(124, 58, 237, 0.5);
+      box-shadow: 0 0 15px rgba(124,58,237,0.2), inset 0 0 15px rgba(124,58,237,0.05);
+    }
+    .border-neon-blue {
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 15px rgba(59,130,246,0.15), inset 0 0 15px rgba(59,130,246,0.05);
+    }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(13, 13, 43, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .glass-light {
+      background: rgba(17, 17, 46, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Navbar */
+    .nav-link {
+      position: relative;
+      color: #94a3b8;
+      transition: color 0.3s;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, #a855f7, #3b82f6);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.8);
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #a855f7;
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+    }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Hero avatar */
+    .avatar-ring {
+      position: relative;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #3b82f6, #06b6d4);
+      padding: 3px;
+      animation: float 6s ease-in-out infinite;
+    }
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dashed rgba(168,85,247,0.4);
+      animation: spin 20s linear infinite;
+    }
+    .avatar-ring::after {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 1px solid rgba(59,130,246,0.2);
+      animation: spin 30s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a1a3e, #0d0d2b);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      font-size: 5rem;
+    }
+
+    /* Typewriter */
+    .typewriter-wrap { display: inline-flex; align-items: center; gap: 4px; }
+    .cursor { display: inline-block; width: 3px; height: 1.1em; background: #a855f7; animation: blink 1s step-end infinite; vertical-align: text-bottom; }
+
+    /* Skill cards */
+    .skill-card {
+      background: rgba(13,13,43,0.8);
+      border: 1px solid rgba(124,58,237,0.25);
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(168,85,247,0.08), transparent);
+      transition: left 0.5s ease;
+    }
+    .skill-card:hover::before { left: 100%; }
+    .skill-card:hover {
+      border-color: rgba(168,85,247,0.7);
+      box-shadow: 0 0 25px rgba(124,58,237,0.4), 0 0 50px rgba(124,58,237,0.1);
+      transform: translateY(-4px);
+    }
+
+    /* Project cards */
+    .project-card {
+      background: rgba(13,13,43,0.85);
+      border: 1px solid rgba(124,58,237,0.2);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6, #06b6d4);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover::after { transform: scaleX(1); }
+    .project-card:hover {
+      border-color: rgba(168,85,247,0.5);
+      box-shadow: 0 10px 40px rgba(124,58,237,0.25);
+      transform: translateY(-6px);
+    }
+
+    /* CTA buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #3b82f6);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.4s;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(124,58,237,0.7), 0 0 60px rgba(59,130,246,0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(168,85,247,0.5);
+      color: #a855f7;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-outline::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 0; height: 100%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(59,130,246,0.1));
+      transition: width 0.3s;
+    }
+    .btn-outline:hover::before { width: 100%; }
+    .btn-outline:hover {
+      border-color: #a855f7;
+      box-shadow: 0 0 20px rgba(168,85,247,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Social icons */
+    .social-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(13,13,43,0.9);
+      border: 1px solid rgba(124,58,237,0.4);
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .social-btn:hover {
+      color: #a855f7;
+      border-color: #a855f7;
+      box-shadow: 0 0 20px rgba(168,85,247,0.5);
+      transform: translateY(-4px) scale(1.1);
+    }
+
+    /* Section titles */
+    .section-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: #a855f7;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* Orb decorations */
+    .orb {
+      border-radius: 50%;
+      filter: blur(80px);
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #05050f; }
+    ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 2px; }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* Progress bar animation */
+    .progress-bar {
+      height: 3px;
+      background: linear-gradient(90deg, #7c3aed, #3b82f6, #06b6d4);
+      border-radius: 2px;
+      transition: width 1.5s ease;
+      box-shadow: 0 0 8px rgba(124,58,237,0.6);
+    }
+
+    /* Contact card */
+    .contact-item {
+      background: rgba(13,13,43,0.7);
+      border: 1px solid rgba(124,58,237,0.2);
+      transition: all 0.3s ease;
+    }
+    .contact-item:hover {
+      border-color: rgba(168,85,247,0.5);
+      background: rgba(13,13,43,0.9);
+      box-shadow: 0 0 20px rgba(124,58,237,0.2);
+      transform: translateX(6px);
+    }
+
+    /* Hex decorations */
+    .hex-badge {
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    /* Line accent */
+    .accent-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #7c3aed, #3b82f6, transparent);
+    }
+  </style>
+</head>
+<body class="text-gray-200 overflow-x-hidden">
+
+  <!-- ====== NAVBAR ====== -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6" style="background: rgba(5,5,15,0.0);">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 border border-purple-500 flex items-center justify-content: center rotate-45 group-hover:border-purple-400 transition-all" style="box-shadow: 0 0 10px rgba(168,85,247,0.4);">
+          <span class="font-orb text-purple-400 text-xs -rotate-45">M</span>
+        </div>
+        <span class="font-orb text-xs tracking-widest text-gray-400 hidden sm:block group-hover:text-purple-400 transition-colors">MUMTAHIN</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 z-50" onclick="toggleMenu()">
+        <span class="hamburger-line w-6 h-0.5 bg-purple-400 transition-all duration-300 block"></span>
+        <span class="hamburger-line w-4 h-0.5 bg-purple-400 transition-all duration-300 block ml-auto"></span>
+        <span class="hamburger-line w-6 h-0.5 bg-purple-400 transition-all duration-300 block"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden flex-col items-center gap-6 py-8 glass border-neon mt-4 rounded-lg">
+      <a href="#hero" class="nav-link text-sm" onclick="toggleMenu()">Home</a>
+      <a href="#about" class="nav-link text-sm" onclick="toggleMenu()">About</a>
+      <a href="#skills" class="nav-link text-sm" onclick="toggleMenu()">Skills</a>
+      <a href="#projects" class="nav-link text-sm" onclick="toggleMenu()">Projects</a>
+      <a href="#contact" class="nav-link text-sm" onclick="toggleMenu()">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
+    <!-- Orbs -->
+    <div class="orb w-96 h-96 bg-purple-900 opacity-20 top-20 -left-32"></div>
+    <div class="orb w-80 h-80 bg-blue-900 opacity-15 bottom-20 -right-24"></div>
+    <div class="orb w-64 h-64 bg-violet-800 opacity-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Scan line decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 left-0 w-full h-px bg-purple-500 opacity-30 animate-scan" style="animation-duration: 8s;"></div>
+    </div>
+
+    <!-- Corner decorations -->
+    <div class="absolute top-24 left-8 w-16 h-16 border-t border-l border-purple-500 opacity-40"></div>
+    <div class="absolute top-24 right-8 w-16 h-16 border-t border-r border-blue-500 opacity-40"></div>
+    <div class="absolute bottom-8 left-8 w-16 h-16 border-b border-l border-purple-500 opacity-40"></div>
+    <div class="absolute bottom-8 right-8 w-16 h-16 border-b border-r border-blue-500 opacity-40"></div>
+
+    <div class="max-w-7xl mx-auto px-6 py-24 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-24">
+      <!-- Text content -->
+      <div class="flex-1 text-center lg:text-left">
+        <!-- System tag -->
+        <div class="flex items-center gap-2 justify-center lg:justify-start mb-6">
+          <div class="w-2 h-2 rounded-full bg-green-400" style="box-shadow: 0 0 8px rgba(74,222,128,0.8); animation: pulse 2s infinite;"></div>
+          <span class="font-mono text-green-400 text-xs tracking-widest">SYSTEM ONLINE // v2.0.26</span>
+        </div>
+
+        <!-- Name -->
+        <h1 class="font-orb font-black text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-none mb-4">
+          <span class="block text-white text-glow tracking-tight">MD MUMTAHIN</span>
+          <span class="block grad-text tracking-tight">AREFIN</span>
+        </h1>
+
+        <!-- Typewriter titles -->
+        <div class="font-mono text-base sm:text-lg lg:text-xl mb-8 text-gray-400 flex items-center gap-2 justify-center lg:justify-start">
+          <span class="text-purple-400">$&gt;</span>
+          <span id="typewriter-text" class="text-gray-300"></span>
+          <span class="cursor"></span>
+        </div>
+
+        <!-- Tagline -->
+        <p class="text-gray-400 font-raj text-lg sm:text-xl mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+          Building the future through <span class="text-purple-400 font-semibold">code</span>, <span class="text-blue-400 font-semibold">cybersecurity</span>, and <span class="text-cyan-400 font-semibold">artificial intelligence</span>.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="#projects" class="btn-primary text-white font-orb text-xs tracking-widest py-4 px-8 rounded-sm cursor-pointer inline-block text-center">
+            <i class="fas fa-code mr-2"></i>VIEW PROJECTS
+          </a>
+          <a href="#contact" class="btn-outline font-orb text-xs tracking-widest py-4 px-8 rounded-sm cursor-pointer inline-block text-center">
+            <i class="fas fa-terminal mr-2"></i>CONTACT ME
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div class="flex gap-8 mt-12 justify-center lg:justify-start">
+          <div class="text-center">
+            <div class="font-orb text-2xl grad-text font-bold">4+</div>
+            <div class="font-mono text-xs text-gray-500 tracking-wider mt-1">PROJECTS</div>
+          </div>
+          <div class="w-px bg-purple-800"></div>
+          <div class="text-center">
+            <div class="font-orb text-2xl grad-text font-bold">12+</div>
+            <div class="font-mono text-xs text-gray-500 tracking-wider mt-1">SKILLS</div>
+          </div>
+          <div class="w-px bg-purple-800"></div>
+          <div class="text-center">
+            <div class="font-orb text-2xl grad-text font-bold">∞</div>
+            <div class="font-mono text-xs text-gray-500 tracking-wider mt-1">CURIOSITY</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatar -->
+      <div class="flex-shrink-0 flex flex-col items-center gap-6">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <i class="fas fa-user-astronaut text-purple-400" style="font-size: 5rem; text-shadow: 0 0 30px rgba(168,85,247,0.8);"></i>
+          </div>
+        </div>
+
+        <!-- Status badges -->
+        <div class="flex flex-col gap-2 items-center">
+          <div class="glass border-neon rounded-sm px-4 py-2 font-mono text-xs text-purple-300 tracking-wider">
+            <i class="fas fa-shield-halved mr-2 text-purple-400"></i>ETHICAL HACKER
+          </div>
+          <div class="glass border-neon-blue rounded-sm px-4 py-2 font-mono text-xs text-blue-300 tracking-wider">
+            <i class="fas fa-brain mr-2 text-blue-400"></i>AI / ML ENTHUSIAST
+          </div>
+          <div class="glass rounded-sm px-4 py-2 font-mono text-xs text-cyan-300 tracking-wider" style="border: 1px solid rgba(6,182,212,0.3);">
+            <i class="fas fa-graduation-cap mr-2 text-cyan-400"></i>CSE STUDENT
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <span class="font-mono text-xs text-gray-600 tracking-widest">SCROLL</span>
+      <i class="fas fa-chevron-down text-purple-500 text-sm"></i>
+    </div>
+  </section>
+
+  <div class="accent-line"></div>
+
+  <!-- ====== ABOUT ====== -->
+  <section id="about" class="relative py-28 px-6 overflow-hidden" style="background: linear-gradient(180deg, #05050f 0%, #08081c 50%, #05050f 100%);">
+    <div class="orb w-96 h-96 bg-blue-900 opacity-10 top-0 right-0"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <!-- Section header -->
+      <div class="mb-16 text-center">
+        <div class="section-tag mb-3">// 01. ABOUT_ME.exe</div>
+        <h2 class="font-orb text-3xl sm:text-4xl lg:text-5xl text-white font-bold">
+          WHO AM <span class="grad-text">I</span>
+        </h2>
+        <div class="accent-line w-32 mx-auto mt-4"></div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <!-- Left: Terminal card -->
+        <div class="flex-shrink-0 w-full lg:w-96">
+          <div class="glass border-neon rounded-lg overflow-hidden">
+            <!-- Terminal bar -->
+            <div class="flex items-center gap-2 px-4 py-3 border-b border-purple-900">
+              <div class="w-3 h-3 rounded-full bg-red-500 opacity-80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500 opacity-80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500 opacity-80"></div>
+              <span class="font-mono text-xs text-gray-500 ml-2">profile.sh</span>
+            </div>
+            <!-- Terminal body -->
+            <div class="p-6 font-mono text-sm">
+              <div class="text-green-400 mb-1">$ whoami</div>
+              <div class="text-gray-300 mb-4">Md Mumtahin Arefin</div>
+              <div class="text-green-400 mb-1">$ cat info.txt</div>
+              <div class="text-gray-400 space-y-1 mb-4">
+                <div><span class="text-purple-400">role:</span> CSE Student</div>
+                <div><span class="text-purple-400">focus:</span> Hacking, AI, Dev</div>
+                <div><span class="text-purple-400">status:</span> <span class="text-green-400">Building...</span></div>
+                <div><span class="text-purple-400">level:</span> <span class="text-yellow-400">Leveling Up</span></div>
+              </div>
+              <div class="text-green-400 mb-1">$ ls interests/</div>
+              <div class="text-blue-300 text-xs space-y-0.5">
+                <div>ethical_hacking/ ai_ml/ dev/</div>
+                <div>chatbots/ security/ learning/</div>
+              </div>
+              <div class="text-green-400 mt-4 flex items-center gap-1">
+                $ <span class="cursor"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: About text -->
+        <div class="flex-1 space-y-6">
+          <p class="text-gray-300 font-raj text-lg leading-relaxed">
+            I'm <span class="text-purple-400 font-semibold">Md Mumtahin Arefin</span> — a Computer Science & Engineering student who lives at the intersection of security, intelligence, and creativity. I don't just write code; I architect solutions that push boundaries.
+          </p>
+          <p class="text-gray-400 font-raj text-lg leading-relaxed">
+            My journey spans <span class="text-blue-400">Ethical Hacking</span>, where I learn to think like an attacker to build stronger defenses, and <span class="text-cyan-400">Artificial Intelligence & Machine Learning</span>, where I explore how machines can reason, learn, and create. I believe the most dangerous tool in the world isn't a weapon — it's a mind that understands both how to break things and how to build them.
+          </p>
+          <p class="text-gray-400 font-raj text-lg leading-relaxed">
+            Currently, I'm crafting applications that solve real-world problems: intelligent chatbots, productivity powerhouses, academic tools, and cybersecurity utilities. Every project is a challenge I refuse to walk away from.
+          </p>
+
+          <!-- Trait badges -->
+          <div class="flex flex-wrap gap-3 pt-4">
+            {['Problem Solver', 'Self-Taught', 'Cybersecurity', 'AI Builder', 'Open Source', 'Night Coder'].map(t =>
+              `<span class="px-4 py-2 font-mono text-xs border border-purple-800 text-purple-300 rounded-sm hover:border-purple-400 hover:text-purple-200 transition-all cursor-default" style="background: rgba(124,58,237,0.08);">${t}</span>`
+            ).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="accent-line"></div>
+
+  <!-- ====== SKILLS ====== -->
+  <section id="skills" class="relative py-28 px-6 overflow-hidden grid-bg">
+    <div class="orb w-80 h-80 bg-purple-900 opacity-15 bottom-0 left-0"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-16 text-center">
+        <div class="section-tag mb-3">// 02. SKILLS.db</div>
+        <h2 class="font-orb text-3xl sm:text-4xl lg:text-5xl text-white font-bold">
+          TECH <span class="grad-text">ARSENAL</span>
+        </h2>
+        <div class="accent-line w-32 mx-auto mt-4"></div>
+      </div>
+
+      <!-- Skills grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+        <!-- Skill card template -->
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(229,77,38,0.1); border: 1px solid rgba(229,77,38,0.3);">
+            <i class="fab fa-html5 text-orange-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">HTML5</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 90%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">90%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(38,143,229,0.1); border: 1px solid rgba(38,143,229,0.3);">
+            <i class="fab fa-css3-alt text-blue-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">CSS3</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 85%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">85%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3);">
+            <i class="fas fa-wind text-cyan-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Tailwind</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 80%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">80%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(234,179,8,0.1); border: 1px solid rgba(234,179,8,0.3);">
+            <i class="fab fa-js text-yellow-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">JavaScript</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 70%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">70%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);">
+            <i class="fab fa-python text-blue-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Python</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 78%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">78%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);">
+            <i class="fab fa-java text-red-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Java</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 72%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">72%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3);">
+            <i class="fas fa-mobile-screen text-cyan-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Flutter</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 55%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">55%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);">
+            <i class="fas fa-server text-emerald-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">FastAPI</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 65%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">65%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.3);">
+            <i class="fas fa-database text-slate-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">SQLite</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 68%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">68%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3);">
+            <i class="fas fa-shield-halved text-purple-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Eth. Hacking</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 60%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">60%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);">
+            <i class="fas fa-brain text-blue-400 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">AI / ML</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 62%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">62%</div>
+        </div>
+
+        <div class="skill-card rounded-lg p-5 text-center group">
+          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center rounded-sm" style="background: rgba(243,244,246,0.05); border: 1px solid rgba(243,244,246,0.15);">
+            <i class="fab fa-github text-gray-300 text-2xl"></i>
+          </div>
+          <div class="font-orb text-sm text-gray-200 mb-3 group-hover:text-purple-300 transition-colors">Git / GitHub</div>
+          <div class="w-full bg-gray-800 rounded-full h-0.5 mb-1">
+            <div class="progress-bar" style="width: 75%;"></div>
+          </div>
+          <div class="font-mono text-xs text-gray-500">75%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="accent-line"></div>
+
+  <!-- ====== PROJECTS ====== -->
+  <section id="projects" class="relative py-28 px-6 overflow-hidden" style="background: linear-gradient(180deg, #05050f 0%, #08081c 50%, #05050f 100%);">
+    <div class="orb w-96 h-96 bg-purple-900 opacity-10 top-20 right-0"></div>
+
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-16 text-center">
+        <div class="section-tag mb-3">// 03. PROJECTS.log</div>
+        <h2 class="font-orb text-3xl sm:text-4xl lg:text-5xl text-white font-bold">
+          WHAT I'VE <span class="grad-text">BUILT</span>
+        </h2>
+        <div class="accent-line w-32 mx-auto mt-4"></div>
+      </div>
+
+      <!-- Projects grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <!-- Project 1: Peach Chatbot -->
+        <div class="project-card rounded-lg p-7 group">
+          <!-- Header -->
+          <div class="flex items-start justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-sm flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #a855f7); box-shadow: 0 0 15px rgba(168,85,247,0.4);">
+                <i class="fas fa-comment-dots text-white text-sm"></i>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-purple-400 tracking-wider mb-0.5">PROJECT_01</div>
+                <h3 class="font-orb text-lg text-white group-hover:text-purple-300 transition-colors">Peach Chatbot</h3>
+              </div>
+            </div>
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1" style="box-shadow: 0 0 6px rgba(74,222,128,0.8);"></div>
+          </div>
+
+          <p class="text-gray-400 font-raj text-base leading-relaxed mb-6">
+            A sweet AI chatbot with rich personality and conversational intelligence. Built with natural language processing capabilities to deliver meaningful, context-aware interactions.
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc;">Python</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;">AI / NLP</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: #67e8f9;">FastAPI</span>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex gap-3">
+            <a href="#" class="btn-primary text-white font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fas fa-external-link mr-1.5"></i>Live Demo
+            </a>
+            <a href="https://github.com/mumutahin" target="_blank" class="btn-outline font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fab fa-github mr-1.5"></i>GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: LyfTrack -->
+        <div class="project-card rounded-lg p-7 group">
+          <div class="flex items-start justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-sm flex items-center justify-center" style="background: linear-gradient(135deg, #059669, #3b82f6); box-shadow: 0 0 15px rgba(59,130,246,0.3);">
+                <i class="fas fa-chart-line text-white text-sm"></i>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-blue-400 tracking-wider mb-0.5">PROJECT_02</div>
+                <h3 class="font-orb text-lg text-white group-hover:text-purple-300 transition-colors">LyfTrack</h3>
+              </div>
+            </div>
+            <div class="w-2 h-2 rounded-full bg-yellow-400 mt-1" style="box-shadow: 0 0 6px rgba(251,191,36,0.8);"></div>
+          </div>
+
+          <p class="text-gray-400 font-raj text-base leading-relaxed mb-4">
+            An all-in-one life productivity suite with journal, finance tracker, habit manager, and automated daily/weekly/monthly summaries. Your life, quantified.
+          </p>
+
+          <!-- Feature list -->
+          <div class="grid grid-cols-2 gap-1 mb-5">
+            <div class="font-mono text-xs text-gray-500 flex items-center gap-1.5"><i class="fas fa-check text-green-500 text-xs"></i> Journal</div>
+            <div class="font-mono text-xs text-gray-500 flex items-center gap-1.5"><i class="fas fa-check text-green-500 text-xs"></i> Finance Tracker</div>
+            <div class="font-mono text-xs text-gray-500 flex items-center gap-1.5"><i class="fas fa-check text-green-500 text-xs"></i> Habit Manager</div>
+            <div class="font-mono text-xs text-gray-500 flex items-center gap-1.5"><i class="fas fa-check text-green-500 text-xs"></i> Smart Summaries</div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd;">Python</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7;">FastAPI</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.3); color: #cbd5e1;">SQLite</span>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="#" class="btn-primary text-white font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fas fa-external-link mr-1.5"></i>Live Demo
+            </a>
+            <a href="https://github.com/mumutahin" target="_blank" class="btn-outline font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fab fa-github mr-1.5"></i>GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3: Online Quiz System -->
+        <div class="project-card rounded-lg p-7 group">
+          <div class="flex items-start justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-sm flex items-center justify-center" style="background: linear-gradient(135deg, #d97706, #ef4444); box-shadow: 0 0 15px rgba(239,68,68,0.3);">
+                <i class="fas fa-clipboard-question text-white text-sm"></i>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-orange-400 tracking-wider mb-0.5">PROJECT_03</div>
+                <h3 class="font-orb text-lg text-white group-hover:text-purple-300 transition-colors">Online Quiz System</h3>
+              </div>
+            </div>
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1" style="box-shadow: 0 0 6px rgba(74,222,128,0.8);"></div>
+          </div>
+
+          <p class="text-gray-400 font-raj text-base leading-relaxed mb-6">
+            A Java Swing-based quiz platform featuring dual interfaces for teachers and students. Teachers manage questions and results; students take assessments in real-time. Powered by SQLite.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;">Java</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(234,179,8,0.1); border: 1px solid rgba(234,179,8,0.3); color: #fde047;">Swing</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.3); color: #cbd5e1;">SQLite</span>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="#" class="btn-primary text-white font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fas fa-external-link mr-1.5"></i>Live Demo
+            </a>
+            <a href="https://github.com/mumutahin" target="_blank" class="btn-outline font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fab fa-github mr-1.5"></i>GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4: Student Report Card System -->
+        <div class="project-card rounded-lg p-7 group">
+          <div class="flex items-start justify-between mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-sm flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed, #06b6d4); box-shadow: 0 0 15px rgba(124,58,237,0.4);">
+                <i class="fas fa-graduation-cap text-white text-sm"></i>
+              </div>
+              <div>
+                <div class="font-mono text-xs text-purple-400 tracking-wider mb-0.5">PROJECT_04</div>
+                <h3 class="font-orb text-lg text-white group-hover:text-purple-300 transition-colors">Student Report System</h3>
+              </div>
+            </div>
+            <div class="w-2 h-2 rounded-full bg-green-400 mt-1" style="box-shadow: 0 0 6px rgba(74,222,128,0.8);"></div>
+          </div>
+
+          <p class="text-gray-400 font-raj text-base leading-relaxed mb-6">
+            A comprehensive system for managing and auto-generating student academic report cards. Handles grade computation, report formatting, and academic performance tracking with efficiency.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #c084fc;">Python</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); color: #67e8f9;">SQLite</span>
+            <span class="font-mono text-xs px-2 py-1 rounded-sm" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7;">Reports</span>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="#" class="btn-primary text-white font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fas fa-external-link mr-1.5"></i>Live Demo
+            </a>
+            <a href="https://github.com/mumutahin" target="_blank" class="btn-outline font-mono text-xs py-2.5 px-5 rounded-sm flex-1 text-center">
+              <i class="fab fa-github mr-1.5"></i>GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="accent-line"></div>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact" class="relative py-28 px-6 overflow-hidden grid-bg">
+    <div class="orb w-80 h-80 bg-blue-900 opacity-15 top-0 right-0"></div>
+    <div class="orb w-64 h-64 bg-purple-900 opacity-10 bottom-0 left-0"></div>
+
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <div class="mb-16 text-center">
+        <div class="section-tag mb-3">// 04. CONTACT.sh</div>
+        <h2 class="font-orb text-3xl sm:text-4xl lg:text-5xl text-white font-bold">
+          GET IN <span class="grad-text">TOUCH</span>
+        </h2>
+        <div class="accent-line w-32 mx-auto mt-4"></div>
+        <p class="text-gray-500 font-raj text-lg mt-6 max-w-md mx-auto">
+          Got a project, opportunity, or just want to connect? My terminal is always open.
+        </p>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-10">
+        <!-- Contact links -->
+        <div class="flex-1 space-y-4">
+          <a href="mailto:361.mumtahin.arefin@gmail.com" class="contact-item flex items-center gap-5 rounded-lg p-5 group">
+            <div class="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);">
+              <i class="fas fa-envelope text-red-400 text-lg"></i>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-gray-500 tracking-wider mb-0.5">EMAIL</div>
+              <div class="font-raj text-gray-300 group-hover:text-purple-300 transition-colors">361.mumtahin.arefin@gmail.com</div>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 ml-auto group-hover:text-purple-400 group-hover:translate-x-1 transition-all"></i>
+          </a>
+
+          <a href="https://www.linkedin.com/in/" target="_blank" class="contact-item flex items-center gap-5 rounded-lg p-5 group">
+            <div class="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);">
+              <i class="fab fa-linkedin text-blue-400 text-lg"></i>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-gray-500 tracking-wider mb-0.5">LINKEDIN</div>
+              <div class="font-raj text-gray-300 group-hover:text-purple-300 transition-colors">Mumtahin Arefin</div>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 ml-auto group-hover:text-purple-400 group-hover:translate-x-1 transition-all"></i>
+          </a>
+
+          <a href="https://github.com/mumutahin" target="_blank" class="contact-item flex items-center gap-5 rounded-lg p-5 group">
+            <div class="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(243,244,246,0.05); border: 1px solid rgba(243,244,246,0.15);">
+              <i class="fab fa-github text-gray-300 text-lg"></i>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-gray-500 tracking-wider mb-0.5">GITHUB</div>
+              <div class="font-raj text-gray-300 group-hover:text-purple-300 transition-colors">github.com/mumutahin</div>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 ml-auto group-hover:text-purple-400 group-hover:translate-x-1 transition-all"></i>
+          </a>
+
+          <a href="https://www.facebook.com/mumtahin.arefin.9" target="_blank" class="contact-item flex items-center gap-5 rounded-lg p-5 group">
+            <div class="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);">
+              <i class="fab fa-facebook text-blue-400 text-lg"></i>
+            </div>
+            <div>
+              <div class="font-mono text-xs text-gray-500 tracking-wider mb-0.5">FACEBOOK</div>
+              <div class="font-raj text-gray-300 group-hover:text-purple-300 transition-colors">mumtahin.arefin.9</div>
+            </div>
+            <i class="fas fa-arrow-right text-gray-600 ml-auto group-hover:text-purple-400 group-hover:translate-x-1 transition-all"></i>
+          </a>
+        </div>
+
+        <!-- Status card -->
+        <div class="lg:w-80 flex-shrink-0">
+          <div class="glass border-neon rounded-lg p-7 h-full flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-green-400" style="box-shadow: 0 0 8px rgba(74,222,128,0.8); animation: pulse 2s infinite;"></div>
+                <span class="font-mono text-green-400 text-xs tracking-wider">AVAILABLE FOR WORK</span>
+              </div>
+              <h3 class="font-orb text-xl text-white mb-4">Let's Build Something <span class="grad-text">Remarkable</span></h3>
+              <p class="text-gray-400 font-raj text-base leading-relaxed mb-8">
+                Open to internships, freelance projects, collaborations, and conversations about code, AI, or cybersecurity.
+              </p>
+            </div>
+
+            <!-- Social icons row -->
+            <div>
+              <div class="font-mono text-xs text-gray-600 tracking-wider mb-4">FIND ME ON</div>
+              <div class="flex gap-3 flex-wrap">
+                <a href="mailto:361.mumtahin.arefin@gmail.com" class="social-btn">
+                  <i class="fas fa-envelope text-sm"></i>
+                </a>
+                <a href="https://github.com/mumutahin" target="_blank" class="social-btn">
+                  <i class="fab fa-github text-sm"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/" target="_blank" class="social-btn">
+                  <i class="fab fa-linkedin text-sm"></i>
+                </a>
+                <a href="https://www.facebook.com/mumtahin.arefin.9" target="_blank" class="social-btn">
+                  <i class="fab fa-facebook text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="relative py-10 px-6 border-t" style="border-color: rgba(124,58,237,0.2); background: #03030c;">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 border border-purple-700 flex items-center justify-center rotate-45" style="box-shadow: 0 0 8px rgba(124,58,237,0.3);">
+          <span class="font-orb text-purple-500 text-xs -rotate-45">M</span>
+        </div>
+        <span class="font-mono text-gray-600 text-xs tracking-wider">© 2026 Md Mumtahin Arefin. All Rights Reserved.</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-xs text-gray-700">Built with</span>
+        <i class="fas fa-heart text-purple-600 text-xs"></i>
+        <span class="font-mono text-xs text-gray-700">& Tailwind CSS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== NAVBAR SCROLL BEHAVIOR =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(5,5,15,0.95)';
+        navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.borderBottom = '1px solid rgba(124,58,237,0.15)';
+        navbar.style.paddingTop = '0.75rem';
+        navbar.style.paddingBottom = '0.75rem';
+      } else {
+        navbar.style.background = 'rgba(5,5,15,0.0)';
+        navbar.style.backdropFilter = 'none';
+        navbar.style.borderBottom = 'none';
+        navbar.style.paddingTop = '1rem';
+        navbar.style.paddingBottom = '1rem';
+      }
+    });
+
+    // ===== ACTIVE NAV ON SCROLL =====
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+      });
+    });
+
+    // ===== MOBILE MENU =====
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('open');
+    }
+
+    // ===== TYPEWRITER =====
+    const titles = [
+      'CSE Student',
+      'Beginner Ethical Hacker',
+      'AI & ML Enthusiast',
+      'Programmer / Developer',
+    ];
+    let ti = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typewriter-text');
+    function type() {
+      const word = titles[ti];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++ci);
+        if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = word.slice(0, --ci);
+        if (ci === 0) { deleting = false; ti = (ti + 1) % titles.length; setTimeout(type, 300); return; }
+      }
+      setTimeout(type, deleting ? 60 : 90);
+    }
+    setTimeout(type, 800);
+
+    // ===== TRAIT BADGES (About section) =====
+    const badgeContainer = document.querySelector('.flex.flex-wrap.gap-3.pt-4');
+    if (badgeContainer) {
+      const traits = ['Problem Solver', 'Self-Taught', 'Cybersecurity', 'AI Builder', 'Open Source', 'Night Coder'];
+      badgeContainer.innerHTML = traits.map(t =>
+        `<span class="px-4 py-2 font-mono text-xs border border-purple-800 text-purple-300 rounded-sm hover:border-purple-400 hover:text-purple-200 transition-all cursor-default" style="background: rgba(124,58,237,0.08);">${t}</span>`
+      ).join('');
+    }
+
+    // ===== INTERSECTION OBSERVER for progress bars =====
+    const progressBars = document.querySelectorAll('.progress-bar');
+    const widths = [];
+    progressBars.forEach(bar => {
+      widths.push(bar.style.width);
+      bar.style.width = '0%';
+    });
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          progressBars.forEach((bar, i) => {
+            setTimeout(() => { bar.style.width = widths[i]; }, i * 60);
+          });
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    const skillSection = document.getElementById('skills');
+    if (skillSection) obs.observe(skillSection);
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
